@@ -3,6 +3,7 @@ import nock from 'nock';
 import sinon from 'sinon';
 import sinonChai from 'sinon-chai';
 import convertBTC from '../src/ConvertBTC';
+import chalk from 'chalk';
 
 chai.use(sinonChai);
 
@@ -31,7 +32,7 @@ describe('ConvertBTC', () => {
     convertBTC();
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('1 BTC to USD = 10866.97');
+      expect(consoleStub).to.have.been.calledWith(`${chalk.cyan('1')} BTC to ${chalk.cyan('USD')} = ${chalk.green('10866.97')}`);
       done();
     }, 200);
   });
@@ -45,7 +46,7 @@ describe('ConvertBTC', () => {
     convertBTC('USD', 10);
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('10 BTC to USD = 10866.97');
+      expect(consoleStub).to.have.been.calledWith(`${chalk.cyan('10')} BTC to ${chalk.cyan('USD')} = ${chalk.green('10866.97')}`);
       done();
     }, 200);
   });
@@ -59,7 +60,7 @@ describe('ConvertBTC', () => {
     convertBTC('BRL');
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('1 BTC to BRL = 10866.97');
+      expect(consoleStub).to.have.been.calledWith(`${chalk.cyan('1')} BTC to ${chalk.cyan('BRL')} = ${chalk.green('10866.97')}`);
       done();
     }, 200);
   });
@@ -73,7 +74,7 @@ describe('ConvertBTC', () => {
     convertBTC();
 
     setTimeout(() => {
-      expect(consoleStub).to.have.been.calledWith('Something went wrong in the API. Try in a few minutes.');
+      expect(consoleStub).to.have.been.calledWith(chalk.red('Something went wrong in the API. Try in a few minutes.'));
       done();
     }, 200);
   });
