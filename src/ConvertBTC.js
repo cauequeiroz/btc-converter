@@ -15,6 +15,7 @@ function convertBTC(currency = 'USD', amount = 1) {
     }
 
     console.log(`${chalk.cyan(amount)} BTC to ${chalk.cyan(currency)} = ${chalk.green(apiResponse.price)}`);
+    return '\n';
   });
 }
 
